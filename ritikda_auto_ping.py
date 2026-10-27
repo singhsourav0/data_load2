@@ -37,7 +37,7 @@ TARGET_URLS = [
 ]
 
 REQUESTS_PER_TARGET = int(os.getenv("REQUESTS_PER_TARGET", "15000"))
-THREADS_PER_TARGET = int(os.getenv("THREADS_PER_TARGET", "100"))
+THREADS_PER_TARGET = int(os.getenv("THREADS_PER_TARGET", "1000"))
 REQUEST_TIMEOUT = int(os.getenv("REQUEST_TIMEOUT", "15"))  # Increased from 10 to 15s
 INTERVAL_SECONDS = int(os.getenv("INTERVAL_SECONDS", "300"))  # 5 minutes
 LOG_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "auto_ping_history.log")
