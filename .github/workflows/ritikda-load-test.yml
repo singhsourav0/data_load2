@@ -1,9 +1,13 @@
+
 name: Ritikda Fast Autonomous Ping
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '7,17,27,37,47,57 * * * *'
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   parallel-ping:
@@ -14,7 +18,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Execute Parallel Autonomous Ping
-        run: |
-          pip3 install requests urllib3 -q
-          python3 ritikda_auto_ping.py --once | tee -a $GITHUB_STEP_SUMMARY
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests urllib3
+
+      - name: Execute one monitoring cycle
+        run: python3 ritikda_auto_ping.py --once
